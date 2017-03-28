@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 17:27:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/28 20:03:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/28 20:36:09 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,20 @@ t_pxl		pxl_init(void)
 	return (pxl);
 }
 
-int			ft_put_pxl_img(char **addr, unsigned int color)
+int			ft_put_pxl_img(t_mlxdatas mlx_datas, unsigned int color, int *id)
 {
-	int		i;
 	int		shift;
+	int		d;
 
-	i = 0;
-	shift = 24;
-	while (addr[0][i] && i < 4)
+	d = -1;
+	shift = 0;
+	while (++d < 4)
 	{
-		addr[0][i] = (color >> shift) & 0xFF;
-		shift -= 8;
-		i++;
+		mlx_datas.addr[*id] = (color >> shift) & 0xFF;
+		shift += 8;
+		*id += 1;
 	}
-	exit(0);
-	if (i != 4 || shift != 0)
+	if (shift != 32)
 		return (ft_exit_fdf("put_pxl_img", NULL));
 	return (0);
 }
@@ -44,13 +43,14 @@ int			ft_put_pxl_img(char **addr, unsigned int color)
 int			ft_fill_img(t_mlxdatas mlx_datas, unsigned int color)
 {
 	int		i;
+	int		*id;
 	
 	i = 0;
+	id = &i;
 	while (i < 420)
 	{
-		if (!(ft_put_pxl_img(&mlx_datas.addr, color)))
+		if ((ft_put_pxl_img(mlx_datas, color, id)) == -1)
 			return (ft_exit_fdf("fill_img", NULL));
-		i += 4;
 	}
 	return (0);
 }
@@ -73,14 +73,13 @@ int 		main(void)
 	mlx_datas.mlx = mlx_init();
 	mlx_datas.win = mlx_new_window(mlx_datas.mlx, 420, 420, "42");
 	mlx_datas.img = mlx_new_image(mlx_datas.mlx, 420, 420);
-	mlx_datas.addr = mlx_get_data_addr(mlx_datas.img,
-			&mlx_datas.pxl.b_ppxl, &mlx_datas.pxl.size_l, &mlx_datas.pxl.endian);
+	mlx_datas.addr = mlx_get_data_addr(mlx_datas.img, &mlx_datas.pxl.b_ppxl,
+			&mlx_datas.pxl.size_l, &mlx_datas.pxl.endian);
 	mlx_datas.pxl = pxl_init();
-	if (!(ft_fill_img(mlx_datas, 0xFFFFFF)))
+	if ((ft_fill_img(mlx_datas, 0xFFFFFF)) == -1)
 		return (-1);
-	mlx_datas.img_in_win =
-		mlx_put_image_to_window(mlx_datas.mlx,
-				mlx_datas.win, mlx_datas.img, 0, 0);
-	sleep(5);
+	mlx_datas.img_in_win = mlx_put_image_to_window(mlx_datas.mlx,
+			mlx_datas.win, mlx_datas.img, 50, 50);
+	mlx_loop(mlx_datas.mlx);
 	return (0);
 }

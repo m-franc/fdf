@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/28 20:02:01 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/28 20:34:27 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct		s_mlxdatas
 }					t_mlxdatas;
 
 t_pxl				pxl_init(void);
-int					ft_put_pxl_img(char **addr, unsigned int color);
+int					ft_put_pxl_img(t_mlxdatas mlx_datas, unsigned int color, int *id);
 int					ft_fill_img(t_mlxdatas mlx_datas, unsigned int color);
 int					ft_exit_fdf(char *msg, ...);
 
