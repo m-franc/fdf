@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/27 17:27:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/28 12:47:50 by mfranc           ###   ########.fr       */
+/*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
+/*   Updated: 2017/03/28 12:52:58 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef FDF_H
 
-int main(void)
-{
-	void	*mlx;
-	void	*img;
+# define FDF_H
 
-	mlx = mlx_init();
-	img = mlx_new_image(mlx, 420, 420);
-	sleep(5);
-	return (0);
-}
+#include "mlx.h"
+#include <math.h>
+#include "libft.h"
+#include "ft_printf.h"
+#include "get_next_line.h"
+
+void	aff(void);
+
+#endif
