@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 18:04:22 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/17 12:51:17 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/28 17:41:54 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ typedef	struct		s_list
 {
 	void			*content;
 	size_t			content_size;
-	int				index;
-	int				precision;
-	int				padding;
 	struct s_list	*next;
 }					t_list;
 
