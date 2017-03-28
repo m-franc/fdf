@@ -6,84 +6,81 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 17:27:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/28 17:50:41 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/28 20:03:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int 		main(void)
+t_pxl		pxl_init(void)
 {
-	void	*mlx;
-	void	*img;
-	void	*win;
-	int		img_in_win;
+	t_pxl	pxl;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 420, 420, "42");
-	img = mlx_new_image(mlx, 420, 420);
-	img_in_win = mlx_put_image_to_window(mlx, win, img, 420, 420);
-	sleep(5);
-	return (0);
+	pxl.b_ppxl = BITS_PER_PIXEL;
+	pxl.size_l = SIZE_LINE;
+	pxl.endian = ENDIAN;
+	return (pxl);
 }
 
-
-// This function put pxl on img
-// It receive :
-// - the pointer of the octets to fill, got w mlx_get_data_addr
-// - the color code of the octet which it fill in the octet pointed, got w mlx_get_color_value
-void		pxl_init(t_pxl *pxl)
-{
-	pxl->b_ppxl = BITS_PER_PIXEL;
-	pxl->size_l = SIZE_LINE;
-	pxl->endian = ENDIAN;
-}
-
-int			ft_put_pxl_img(char **addr, unsigned int color, int *id)
+int			ft_put_pxl_img(char **addr, unsigned int color)
 {
 	int		i;
 	int		shift;
 
-	i = -1;
+	i = 0;
 	shift = 24;
-	while (*addr[++i] && i < 4)
+	while (addr[0][i] && i < 4)
 	{
-		*addr[i] = (color >> shift) & 0xFF;
+		addr[0][i] = (color >> shift) & 0xFF;
 		shift -= 8;
+		i++;
 	}
-	if (i < 4 || shift != 0)
-		return (-1);
-	*id -= i;
+	exit(0);
+	if (i != 4 || shift != 0)
+		return (ft_exit_fdf("put_pxl_img", NULL));
 	return (0);
 }
 
-int			ft_fill_img(void *img, unsigned int color)
+int			ft_fill_img(t_mlxdatas mlx_datas, unsigned int color)
 {
-	char	*datas;
-	t_pxl	*pxl;
 	int		i;
-	int		*id;
 	
 	i = 0;
-	id = &i;
-	pxl = NULL;
-	pxl_init(pxl);
-	datas = mlx_get_data_addr(img, &pxl->b_ppxl, &pxl->size_l, &pxl->endian);
-	while (datas[i])
+	while (i < 420)
 	{
-		if (!(ft_put_pxl_img(&datas + i, color, id)))
-			return (-1);
+		if (!(ft_put_pxl_img(&mlx_datas.addr, color)))
+			return (ft_exit_fdf("fill_img", NULL));
+		i += 4;
 	}
 	return (0);
 }
 
-int			ft_exit(char *msg, ...)
+int			ft_exit_fdf(char *msg, ...)
 {
 	void	*elem;
 	va_list	ap;
 	va_start(ap, msg);
 	while (!(elem = va_arg(ap, void *)))
 		ft_memdel(&elem);
-	ft_printf("%s, ", )
+	ft_printf("%s Error\n", msg);
 	return (-1);
+}
+
+int 		main(void)
+{
+	t_mlxdatas	mlx_datas;
+
+	mlx_datas.mlx = mlx_init();
+	mlx_datas.win = mlx_new_window(mlx_datas.mlx, 420, 420, "42");
+	mlx_datas.img = mlx_new_image(mlx_datas.mlx, 420, 420);
+	mlx_datas.addr = mlx_get_data_addr(mlx_datas.img,
+			&mlx_datas.pxl.b_ppxl, &mlx_datas.pxl.size_l, &mlx_datas.pxl.endian);
+	mlx_datas.pxl = pxl_init();
+	if (!(ft_fill_img(mlx_datas, 0xFFFFFF)))
+		return (-1);
+	mlx_datas.img_in_win =
+		mlx_put_image_to_window(mlx_datas.mlx,
+				mlx_datas.win, mlx_datas.img, 0, 0);
+	sleep(5);
+	return (0);
 }

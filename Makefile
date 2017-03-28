@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/24 16:24:51 by mfranc            #+#    #+#              #
-#    Updated: 2017/03/28 13:11:53 by mfranc           ###   ########.fr        #
+#    Updated: 2017/03/28 18:51:51 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ P_INC_LIBFT = libft/includes/
 P_INC_FDF = includes/
 ALL_INC = -I $(P_INC_FDF) -I $(P_INC_LIBFT) -I $(P_MLX)
 CC = clang
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 G_FLAGS = -framework OpenGL -framework AppKit
 ALL_LIB = -lm -L $(P_LIBFT) -lftprintf -L $(P_MLX) -lmlx
 SRCS = $(addprefix $(P_SRCS), main.c)
