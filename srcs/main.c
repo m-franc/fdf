@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   launch_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/02 20:49:33 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/29 21:09:32 by mfranc           ###   ########.fr       */
+/*   Created: 2017/03/29 12:21:05 by mfranc            #+#    #+#             */
+/*   Updated: 2017/03/29 21:21:41 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
+#include "fdf.h"
 
-void	ft_puttab(char **tab)
+int 		main(int ac, char **av)
 {
-	int	i;
+	t_fdf	fdf;
 
-	if (!tab)
-		return ;
-	i = 0;
-	while (tab[i])
-		ft_printf("%s ", tab[i++]);
+	fdf = ft_fdf_init();
+	if (ac == 1)
+		return (ft_exit_fdf("Number arguments", NULL));
+	if ((ft_parse_map(fdf, av[1])) == -1)
+		return (-1);
+	fdf.img_in_win = mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img, 50, 50);
+	mlx_loop(fdf.mlx);
+	return (0);
 }
+

@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/24 16:24:51 by mfranc            #+#    #+#              #
-#    Updated: 2017/03/29 12:17:35 by mfranc           ###   ########.fr        #
+#    Updated: 2017/03/29 21:04:24 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,12 @@ CC = clang
 FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 G_FLAGS = -framework OpenGL -framework AppKit
 ALL_LIB = -lm -L $(P_LIBFT) -lftprintf -L $(P_MLX) -lmlx
-SRCS = $(addprefix $(P_SRCS), launch_process.c)
-OBJS = $(SRCS:$(P_SRCS)/%.c=$(P_OBJS)/%.o)
+SRCS = $(addprefix $(P_SRCS), main.c	\
+	   	ft_exit_fdf.c					\
+		display/ft_put_pxl_img.c		\
+		ft_fdf_init.c					\
+		parsing/ft_parse_map.c)
+OBJS = $(SRC:%.c=%.o)
 
 .PHONY: all clean flcean re
 

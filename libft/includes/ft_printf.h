@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 20:38:16 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/27 16:13:06 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/29 17:39:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include "libft.h"
 # include "custom.h"
 
-# define CONVS 	"sSpdDioOuUxXwcCbnN%"
+# define CONVS 	"sSpdDioOuUxXwcCbnNfF"
 # define MODIFS "hlhhlljz"
-# define FLAGS 	"#0123456789 -+*$.hlhhlljz"
+# define FLAGS 	"#0123456789 -+*$.Lhlhhlljz"
 
 typedef struct		s_datas
 {
@@ -109,6 +109,7 @@ char				*ft_get_lc_conv(t_datas *datas);
 char				*ft_get_b_conv(t_datas *datas);
 char				*ft_get_n_conv(t_datas *datas);
 char				*ft_get_ln_conv(t_datas *datas);
+char				*ft_get_f_conv(t_datas *datas);
 char				*ft_get_percent_conv(t_datas *datas);
 
 typedef	char		*(*t_get_convs)(t_datas *datas);
@@ -140,11 +141,13 @@ typedef	int			(*t_get_flags)(t_datas *datas,
 		char *strflag, t_flags *flags, size_t *i);
 
 int					ft_d_space(char **argcvd, t_flags *flags);
-int					ft_d_zero(char **argcvd, t_flags *flags);
 int					ft_d_plus(char **argcvd, t_flags *flags);
+int					ft_d_zero(char **argcvd, t_flags *flags);
 int					ft_d_precision(char **argcvd, t_flags *flags);
 int					ft_d_padding(char **argcvd, t_flags *flags);
 int					ft_n_d(t_datas *datas, t_flags *flags);
+
+int					ft_f_zero(char **argcvd, t_flags *flags);
 
 int					ft_o_diese(char **argcvd, t_flags *flags);
 int					ft_o_zero(char **argcvd, t_flags *flags);

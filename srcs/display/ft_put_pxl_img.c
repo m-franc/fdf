@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_put_pxl_img.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/02 20:49:33 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/29 21:09:32 by mfranc           ###   ########.fr       */
+/*   Created: 2017/03/29 21:07:34 by mfranc            #+#    #+#             */
+/*   Updated: 2017/03/29 21:07:48 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
+#include "fdf.h"
 
-void	ft_puttab(char **tab)
+int			ft_put_pxl_img(t_fdf fdf, unsigned int color, int *id)
 {
-	int	i;
+	int		shift;
+	int		d;
 
-	if (!tab)
-		return ;
-	i = 0;
-	while (tab[i])
-		ft_printf("%s ", tab[i++]);
+	d = -1;
+	shift = 0;
+	while (++d < 4)
+	{
+		fdf.addr[*id] = (color >> shift) & 0xFF;
+		shift += 8;
+		*id += 1;
+	}
+	if (shift != 32)
+		return (ft_exit_fdf("put_pxl_img", NULL));
+	return (0);
 }

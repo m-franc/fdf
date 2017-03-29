@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 11:44:48 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/27 12:10:58 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/29 15:40:56 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_flags_init(t_datas *datas, t_flags *flags)
 		o = 0;
 		while (o < 7)
 		{
-			if (ft_strspn(datas->flags + i, "lhjz") > 0)
+			if (ft_strspn(datas->flags + i, "Llhjz") > 0)
 				i++;
 			if ((g_get_flags[o++](datas, datas->flags + i, flags, p)) == -1)
 				return (-1);

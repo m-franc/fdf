@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 19:02:20 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/27 16:03:09 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/29 17:39:16 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_get_convs	g_get_convs[] =
 	ft_get_ld_conv, ft_get_d_conv, ft_get_o_conv, ft_get_lo_conv,
 	ft_get_u_conv, ft_get_lu_conv, ft_get_x_conv, ft_get_lx_conv,
 	ft_get_w_conv, ft_get_c_conv, ft_get_lc_conv, ft_get_b_conv,
-	ft_get_n_conv, ft_get_ln_conv, ft_get_percent_conv,
+	ft_get_n_conv, ft_get_ln_conv, ft_get_f_conv, ft_get_f_conv,
 };
 
 char	*ft_get_lastdatas(t_datas *datas, char *buff, size_t i)

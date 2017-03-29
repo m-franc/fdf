@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_exit_fdf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/02 20:49:33 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/29 21:09:32 by mfranc           ###   ########.fr       */
+/*   Created: 2017/03/29 21:08:06 by mfranc            #+#    #+#             */
+/*   Updated: 2017/03/29 21:08:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
+#include "fdf.h"
 
-void	ft_puttab(char **tab)
+int			ft_exit_fdf(char *msg, ...)
 {
-	int	i;
+	void	*elem;
+	va_list	ap;
 
-	if (!tab)
-		return ;
-	i = 0;
-	while (tab[i])
-		ft_printf("%s ", tab[i++]);
+	va_start(ap, msg);
+	while (!(elem = va_arg(ap, void *)))
+		ft_memdel(&elem);
+	ft_printf("%s Error\n", msg);
+	return (-1);
 }
