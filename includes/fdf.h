@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/28 20:34:27 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/29 12:26:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,21 @@
 # define SIZE_LINE 4
 # define ENDIAN 1
 
-typedef struct		s_pxl
-{
-	int				b_ppxl;
-	int				size_l;
-	int				endian;
-}					t_pxl;
-
-typedef struct		s_mlxdatas
+typedef struct		s_fdf
 {
 	void			*mlx;
 	void			*img;
 	void			*win;
 	char			*addr;
 	int				img_in_win;
-	struct s_pxl	pxl;
-}					t_mlxdatas;
+	int				b_pxl;
+	int				size_l;
+	int				endian;
+}					t_fdf;
 
-t_pxl				pxl_init(void);
-int					ft_put_pxl_img(t_mlxdatas mlx_datas, unsigned int color, int *id);
-int					ft_fill_img(t_mlxdatas mlx_datas, unsigned int color);
+int					ft_put_pxl_img(t_fdf fdf, unsigned int color, int *id);
+int					ft_fill_img(t_fdf fdf, unsigned int color);
 int					ft_exit_fdf(char *msg, ...);
+t_fdf				ft_fdf_init(void);
 
 #endif
