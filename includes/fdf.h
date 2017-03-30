@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/29 21:05:10 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/30 21:35:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@
 # define SIZE_LINE 4
 # define ENDIAN 1
 
+typedef struct		s_coord
+{
+	int				z;
+	unsigned int	color;
+	struct s_coord	*next;
+}					t_coord;
+
 typedef struct		s_fdf
 {
 	void			*mlx;
@@ -34,12 +41,14 @@ typedef struct		s_fdf
 	int				b_pxl;
 	int				size_l;
 	int				endian;
-	t_list			*coord;
+	t_list			*map_info;
+	t_coord			**coord;
 }					t_fdf;
 
-int					ft_parse_map(t_fdf fdf, char *map);
+int					ft_get_map_info(t_fdf fdf, char *map);
 t_fdf				ft_fdf_init(void);
 int					ft_put_pxl_img(t_fdf fdf, unsigned int color, int *id);
 int					ft_exit_fdf(char *msg, ...);
+int					ft_fill_coord(t_fdf fdf);
 
 #endif

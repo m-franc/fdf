@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/24 16:24:51 by mfranc            #+#    #+#              #
-#    Updated: 2017/03/29 21:04:24 by mfranc           ###   ########.fr        #
+#    Updated: 2017/03/30 21:24:02 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS = $(addprefix $(P_SRCS), main.c	\
 	   	ft_exit_fdf.c					\
 		display/ft_put_pxl_img.c		\
 		ft_fdf_init.c					\
-		parsing/ft_parse_map.c)
+		parsing/ft_parse_map.c			\
+		parsing/ft_fill_coord.c)
 OBJS = $(SRC:%.c=%.o)
 
 .PHONY: all clean flcean re
