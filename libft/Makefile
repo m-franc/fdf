@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 18:43:40 by mfranc            #+#    #+#              #
-#    Updated: 2017/03/29 16:35:57 by mfranc           ###   ########.fr        #
+#    Updated: 2017/03/30 18:33:04 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = 	mems/ft_memset.c				\
 		mems/ft_memchr.c				\
 		mems/ft_memcmp.c				\
 		strs/ft_strlen.c				\
+		strs/ft_tablen.c				\
 		strs/ft_strdup.c				\
 		strs/ft_strcpy.c				\
 		strs/ft_strncpy.c			\

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 21:09:45 by mfranc            #+#    #+#             */
-/*   Updated: 2017/02/27 13:05:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/31 11:56:49 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_list	*ft_lststrnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		if (!(tmp->content = ft_memalloc(sizeof(*content) * content_size)))
+		if (!(tmp->content = ft_strnew(content_size)))
 			return (NULL);
 		tmp->content = ft_strcpy(tmp->content, content);
 		tmp->content_size = content_size;

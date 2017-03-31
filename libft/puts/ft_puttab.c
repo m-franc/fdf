@@ -6,11 +6,12 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 20:49:33 by mfranc            #+#    #+#             */
-/*   Updated: 2017/01/18 19:00:16 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/29 21:09:32 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 
 void	ft_puttab(char **tab)
 {
@@ -20,5 +21,5 @@ void	ft_puttab(char **tab)
 		return ;
 	i = 0;
 	while (tab[i])
-		ft_putendl(tab[i++]);
+		ft_printf("%s ", tab[i++]);
 }

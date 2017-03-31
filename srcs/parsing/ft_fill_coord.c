@@ -6,54 +6,80 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 18:36:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/30 21:42:00 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/03/31 18:19:49 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int 	ft_cnew(t_fdf fdf, char *x_i, int x)
+static int 	ft_coord_first(t_coord **coord_cpy, char *abs, int y, int *j)
 {
 	char	*hexa_to_dec;
 
-	if (!(fdf.coord[x] = malloc(sizeof(t_coord))))
+	while (abs[*j] && (ft_isdigit(abs[*j]) == 0 && abs[*j] != '-'))
+		*j += 1;
+	if (!(coord_cpy[y] = (t_coord*)malloc(sizeof(t_coord))))
 		return (-1);
-	fdf.coord[x]->z = ft_atoi(x_i);
-	if (x_i[ft_ilen(fdf.coord[x]->z, 10)] == ',')
+	coord_cpy[y]->z = ft_atoi(abs);
+	if (abs[*j + ft_ilen(coord_cpy[y]->z, 10)] == ',')
 	{
-		if (!(hexa_to_dec =
-			ft_convbase(x_i +
-			ft_ilen(fdf.coord[x]->z, 10) + 1, 16, 10, BASELW)))
+		if (!(hexa_to_dec = ft_convbase(abs + (*j + ft_ilen(coord_cpy[y]->z, 10)
+							+ 1), 16, 10, BASELW)))
 			return (-1);
-		fdf.coord[x]->color = ft_atoi(hexa_to_dec);
+		coord_cpy[y]->color = ft_atoi(hexa_to_dec);
 		ft_strdel(&hexa_to_dec);
 	}
-	fdf.coord[x] = fdf.coord[x]->next; 
+	else
+		coord_cpy[y]->color = 16777215;
+	return (0);
+}
+
+static int 	ft_coord_current(t_coord **coord_cpy, char *abs, int y)
+{
+	char	*hexa_to_dec;
+
+	if (!(coord_cpy[y] = malloc(sizeof(t_coord))))
+		return (-1);
+	coord_cpy[y]->z = ft_atoi(abs);
+	if (abs[ft_ilen(coord_cpy[y]->z, 10)] == ',')
+	{
+		if (!(hexa_to_dec = ft_convbase(abs +
+						ft_ilen(coord_cpy[y]->z, 10) + 1, 16, 10, BASELW)))
+			return (-1);
+		coord_cpy[y]->color = ft_atoi(hexa_to_dec);
+		ft_strdel(&hexa_to_dec);
+	}
+	else
+		coord_cpy[y]->color = 16777215;
 	return (0);
 }
 
 int			ft_fill_coord(t_fdf fdf)
 {
-	int		x;
+	int		y;
 	int		j;
+	t_coord	**coord_cpy;
 	char	*abs;
 	
-	x = -1;
+	y = -1;
 	abs = fdf.map_info->content;
-	while (fdf.map_info && ++x < (int)ft_listcount(fdf.map_info))
+	if (!(fdf.coord = (t_coord**)malloc(sizeof(t_coord*) * ft_listcount(fdf.map_info))))
+		return (ft_exit_fdf("Coord init", NULL));
+	coord_cpy = fdf.coord;
+	while (fdf.map_info && ++y < (int)ft_listcount(fdf.map_info))
 	{
-		j = -1;
-		while (abs[++j] && (ft_isdigit(abs[j]) || abs[j] == '-'))
-			;
-		if ((ft_cnew(fdf, abs + j, x)) == -1)
+		j = 0;
+		if ((ft_coord_first(coord_cpy, abs, y, &j)) == -1)
 			return (ft_exit_fdf("Coord init", NULL));
-		while (abs[++j])
+		while (abs[j])
 		{
 			if (ft_isdigit(abs[j]) || abs[j] == '-')
 			{
-				if ((ft_cnew(fdf, abs + j, x)) == -1)
+				coord_cpy[y] = coord_cpy[y]->next; 
+				if ((ft_coord_current(coord_cpy, abs + j, y)) == -1)
 					return (ft_exit_fdf("Coord init", NULL));
 			}
+			j++;
 		}
 		fdf.map_info = fdf.map_info->next;
 	}
