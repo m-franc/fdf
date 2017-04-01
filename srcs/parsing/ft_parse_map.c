@@ -31,7 +31,6 @@ int			ft_get_map_info(t_fdf fdf, char *map)
 		if (!(test->next = ft_lstnew(line, ft_strlen(line))))
 			return (ft_exit_fdf("Storage line", NULL));
 		ft_strdel(&line);
-		ft_printf("{green}LA LIGNE : {eoc}%s\n", test->content);
 		test = test->next;
 	}
 	if (read == -1)
