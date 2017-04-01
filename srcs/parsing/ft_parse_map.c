@@ -37,5 +37,5 @@ int			ft_get_map_info(t_fdf fdf, char *map)
 		return (ft_exit_fdf("Reading", NULL));
 	if ((ft_fill_coord(fdf)) == -1)
 		return (-1);
-	return (0);
+	return (1);
 }
