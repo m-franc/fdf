@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 18:36:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/02 20:23:31 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/03 18:56:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,24 @@
 
 static t_coord	*ft_coord_new(char *abs, int *j)
 {
-	char	*hexa_to_dec;
-	char	*color_hexa;
+//	char	*hexa_to_dec;
+//	char	*color_hexa;
 	int		ci;
 	t_coord	*line;
 
+	ft_printf("Le reste de la ligne de coord a stock : {blue}|%s|{eoc}\n", abs);
 	if (!(line = (t_coord*)malloc(sizeof(t_coord))))
 		return (NULL);
 	line->z = ft_atoi(abs);
 	ci = ft_ilen(line->z, 10);
+//	if (abs[ci] == '\0')
+//	{
+//		line->color = 16777215;
+//		return (line);
+//	}
 	*j += ci;
-	ft_printf("Le reste de la ligne de coord a stock : {blue}|%s|{eoc}\n", abs);
-	ft_printf("Apres le Z : {green}|%c|{eoc}\n", abs[ci]);
-	if (abs[ci] != '\0' && abs[ci] == ',')
+//	ft_printf("Apres le Z : {green}|%c|{eoc}\n", abs[ci]);
+/*	if (abs[ci] != '\0' && abs[ci] == ',')
 	{
 		if (!(ft_strstr(abs + (ci + 1), "0x")))
 			return (NULL);
@@ -41,12 +46,8 @@ static t_coord	*ft_coord_new(char *abs, int *j)
 		ft_strdel(&color_hexa);
 		ft_strdel(&hexa_to_dec);
 	}
-	else	
-	{
-		line->color = 16777215;
-		*j += 1;
-	}
-	ft_printf("le caractere qui suit le stockage : {red}|%c|{eoc}\n", abs[*j]);
+	else*/	
+	line->color = 16777215;
 	ft_printf("z : {grey}%d{eoc} - color : {grey}%lu{eoc}\n\n", line->z, line->color); 
 	line->next = NULL;
 	return (line);
@@ -56,6 +57,7 @@ int			ft_fill_coord(t_fdf fdf)
 {
 	int		y;
 	int		j;
+	int		*pj;
 	t_coord	**coord_cpy;
 	char	*abs;
 	
@@ -63,10 +65,11 @@ int			ft_fill_coord(t_fdf fdf)
 	if (!(fdf.coord = malloc(sizeof(t_coord*) * ft_listcount(fdf.map_info))))
 		return (ft_exit_fdf("Coord init", NULL));
 	coord_cpy = fdf.coord;
-	while (fdf.map_info->next && ++y < (int)ft_listcount(fdf.map_info))
+	while (fdf.map_info && ++y < (int)ft_listcount(fdf.map_info))
 	{
 		abs = (char*)fdf.map_info->content;
 		j = 0;
+		pj = &j;
 		while (abs[j] && (ft_isdigit(abs[j]) == 0 && abs[j] != '-'))
 			j++;
 		if (abs[j] == '\0')
@@ -83,8 +86,10 @@ int			ft_fill_coord(t_fdf fdf)
 			}
 			else
 				j++;
+			ft_putstrcolor("COUCOU\n", PURPLE);
 		}
-		ft_lstdelone(&fdf.map_info);
+		ft_printf("Valeur du y : {green}|%d{eoc}\n", y);
+//		ft_lstdelone(&fdf.map_info);
 		fdf.map_info = fdf.map_info->next;
 	}
 	ft_lstdelone(&fdf.map_info->next);

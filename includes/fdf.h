@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/02 19:27:13 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/03 15:36:30 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define BITS_PER_PIXEL 32
 # define SIZE_LINE 4
 # define ENDIAN 1
-# define HEXA "0123456789abcdefx"
+
 typedef struct		s_coord
 {
 	int				z;
