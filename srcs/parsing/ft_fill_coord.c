@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 18:36:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/03 18:56:10 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/03 20:27:47 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ int			ft_fill_coord(t_fdf fdf)
 	int		*pj;
 	t_coord	**coord_cpy;
 	char	*abs;
+	int		lenfile;
 	
 	y = -1;
 	if (!(fdf.coord = malloc(sizeof(t_coord*) * ft_listcount(fdf.map_info))))
 		return (ft_exit_fdf("Coord init", NULL));
 	coord_cpy = fdf.coord;
-	while (fdf.map_info && ++y < (int)ft_listcount(fdf.map_info))
+	ft_printf("==========================|%d|\n", ft_listcount(fdf.map_info));
+	lenfile = ft_listcount(fdf.map_info);
+	while (fdf.map_info && ++y < lenfile)
 	{
 		abs = (char*)fdf.map_info->content;
 		j = 0;
@@ -78,6 +81,7 @@ int			ft_fill_coord(t_fdf fdf)
 			return (ft_exit_fdf("Coord init", NULL));
 		while (abs[j])
 		{
+			ft_printf("---------------------------{green}|%c|{eoc}\n", abs[j]);
 			if (ft_isdigit(abs[j]) || abs[j] == '-')
 			{
 				if (!(coord_cpy[y]->next = ft_coord_new(abs + j, &j)))
@@ -88,10 +92,11 @@ int			ft_fill_coord(t_fdf fdf)
 				j++;
 			ft_putstrcolor("COUCOU\n", PURPLE);
 		}
+		ft_putstrcolor("COUCOUCAPASEE\n", GREEN);
 		ft_printf("Valeur du y : {green}|%d{eoc}\n", y);
-//		ft_lstdelone(&fdf.map_info);
+	//	ft_lstdelone(&fdf.map_info);
 		fdf.map_info = fdf.map_info->next;
 	}
-	ft_lstdelone(&fdf.map_info->next);
+//	ft_lstdelone(&fdf.map_info->next);
 	return (0);
 }

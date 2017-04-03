@@ -22,13 +22,13 @@ int			ft_get_map_info(t_fdf fdf, char *map)
 	fd = open(map, O_RDONLY);
 	if ((read = get_next_line(fd, &line)) == -1)
 		return (ft_exit_fdf("Reading", NULL));
-	if (!(fdf.map_info = ft_lstnew(line, ft_strlen(line))))
+	if (!(fdf.map_info = ft_lstnew(line, (ft_strlen(line) + 1))))
 		return (ft_exit_fdf("Storage line", NULL));
 	ft_strdel(&line);
 	test = fdf.map_info;
 	while ((read = get_next_line(fd, &line)) == 1)
 	{
-		if (!(test->next = ft_lstnew(line, ft_strlen(line))))
+		if (!(test->next = ft_lstnew(line, (ft_strlen(line) + 1))))
 			return (ft_exit_fdf("Storage line", NULL));
 		ft_strdel(&line);
 		test = test->next;
