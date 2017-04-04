@@ -6,13 +6,13 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 21:07:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/29 21:07:48 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/04 15:41:38 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			ft_put_pxl_img(t_fdf fdf, unsigned int color, int *id)
+int			ft_put_pxl_img(t_fdf *fdf, unsigned int color, int *id)
 {
 	int		shift;
 	int		d;
@@ -21,7 +21,7 @@ int			ft_put_pxl_img(t_fdf fdf, unsigned int color, int *id)
 	shift = 0;
 	while (++d < 4)
 	{
-		fdf.addr[*id] = (color >> shift) & 0xFF;
+		fdf->addr[*id] = (color >> shift) & 0xFF;
 		shift += 8;
 		*id += 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 18:36:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/03 20:27:47 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/04 17:11:54 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,23 @@
 
 static t_coord	*ft_coord_new(char *abs, int *j)
 {
-//	char	*hexa_to_dec;
-//	char	*color_hexa;
+	char	*hexa_to_dec;
+	char	*color_hexa;
 	int		ci;
 	t_coord	*line;
 
-	ft_printf("Le reste de la ligne de coord a stock : {blue}|%s|{eoc}\n", abs);
 	if (!(line = (t_coord*)malloc(sizeof(t_coord))))
 		return (NULL);
 	line->z = ft_atoi(abs);
 	ci = ft_ilen(line->z, 10);
-//	if (abs[ci] == '\0')
-//	{
-//		line->color = 16777215;
-//		return (line);
-//	}
 	*j += ci;
-//	ft_printf("Apres le Z : {green}|%c|{eoc}\n", abs[ci]);
-/*	if (abs[ci] != '\0' && abs[ci] == ',')
+	if (abs[ci] != '\0' && abs[ci] == ',')
 	{
 		if (!(ft_strstr(abs + (ci + 1), "0x")))
 			return (NULL);
 		if (!(color_hexa = ft_strsub(abs, ci + 3,
 						ft_strspn(abs + (ci + 3), BASELW))))
 			return (NULL);
-		ft_printf("la couleur : {purple}|%s|{eoc}\n", color_hexa);
 		*j += (ft_strlen(color_hexa) + 3);
 		if (!(hexa_to_dec = ft_convbase(color_hexa, 16, 10, BASELW)))
 			return (NULL);
@@ -46,57 +38,54 @@ static t_coord	*ft_coord_new(char *abs, int *j)
 		ft_strdel(&color_hexa);
 		ft_strdel(&hexa_to_dec);
 	}
-	else*/	
-	line->color = 16777215;
-	ft_printf("z : {grey}%d{eoc} - color : {grey}%lu{eoc}\n\n", line->z, line->color); 
+	else
+		line->color = 16777215;
 	line->next = NULL;
+	ft_printf("le Z : {grey}%d{default} - la couleur : {grey}%lu{eoc}\n", line->z, line->color);
 	return (line);
 }
 
-int			ft_fill_coord(t_fdf fdf)
+int			ft_fill_coord(t_datacoord *dc, t_list *map_info)
 {
-	int		y;
-	int		j;
-	int		*pj;
-	t_coord	**coord_cpy;
-	char	*abs;
-	int		lenfile;
-	
-	y = -1;
-	if (!(fdf.coord = malloc(sizeof(t_coord*) * ft_listcount(fdf.map_info))))
-		return (ft_exit_fdf("Coord init", NULL));
-	coord_cpy = fdf.coord;
-	ft_printf("==========================|%d|\n", ft_listcount(fdf.map_info));
-	lenfile = ft_listcount(fdf.map_info);
-	while (fdf.map_info && ++y < lenfile)
+	while (map_info && ++dc->y < dc->nb_line)
 	{
-		abs = (char*)fdf.map_info->content;
-		j = 0;
-		pj = &j;
-		while (abs[j] && (ft_isdigit(abs[j]) == 0 && abs[j] != '-'))
-			j++;
-		if (abs[j] == '\0')
+		PSTR("KJBHGVF88888888888888")
+
+		dc->line_cpy = (char*)map_info->content;
+		dc->i = 0;
+		while (dc->line_cpy[dc->i]
+				&& (ft_isdigit(dc->line_cpy[dc->i]) == 0 && dc->line_cpy[dc->i] != '-'))
+			dc->i++;
+		if (dc->line_cpy[dc->i] == '\0')
 			return (ft_exit_fdf("No more info in map", NULL));
-		if (!(coord_cpy[y] = ft_coord_new(abs + j, &j)))
+		if (!(dc->coord_cpy[dc->y] = ft_coord_new(dc->line_cpy + dc->i, dc->pi)))
 			return (ft_exit_fdf("Coord init", NULL));
-		while (abs[j])
+		while (dc->line_cpy[dc->i])
 		{
-			ft_printf("---------------------------{green}|%c|{eoc}\n", abs[j]);
-			if (ft_isdigit(abs[j]) || abs[j] == '-')
+			if (ft_isdigit(dc->line_cpy[dc->i]) || dc->line_cpy[dc->i] == '-')
 			{
-				if (!(coord_cpy[y]->next = ft_coord_new(abs + j, &j)))
+				if (!(dc->coord_cpy[dc->y]->next = ft_coord_new(dc->line_cpy + dc->i, dc->pi)))
 					return (ft_exit_fdf("Coord init", NULL));
-				coord_cpy[y] = coord_cpy[y]->next;
+				dc->coord_cpy[dc->y] = dc->coord_cpy[dc->y]->next;
 			}
 			else
-				j++;
-			ft_putstrcolor("COUCOU\n", PURPLE);
+				dc->i++;
 		}
-		ft_putstrcolor("COUCOUCAPASEE\n", GREEN);
-		ft_printf("Valeur du y : {green}|%d{eoc}\n", y);
-	//	ft_lstdelone(&fdf.map_info);
-		fdf.map_info = fdf.map_info->next;
+		map_info = map_info->next;
 	}
-//	ft_lstdelone(&fdf.map_info->next);
-	return (0);
+	return (1);
+}
+
+int			ft_prepare_coord(t_fdf *fdf, t_datacoord *dc)
+{
+	if (!(dc = (t_datacoord*)malloc(sizeof(t_datacoord))))
+		return (ft_exit_fdf("Coord init", NULL));
+	if (!(fdf->coord = malloc(sizeof(t_coord*) * ft_listcount(fdf->map_info))))
+		return (ft_exit_fdf("Coord init", NULL));
+	dc->y = -1;
+	dc->i = 0;
+	dc->pi = &dc->i;
+	dc->coord_cpy = fdf->coord;
+	dc->nb_line = ft_listcount(fdf->map_info);
+	return (1);
 }
