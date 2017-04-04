@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/04 16:49:42 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/04 21:54:02 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define BITS_PER_PIXEL 32
 # define SIZE_LINE 4
 # define ENDIAN 1
+# define HEXA "0123456789abcdefABCDEF"
 
 typedef struct		s_coord
 {
@@ -61,8 +62,9 @@ int					ft_get_map_info(t_fdf *fdf, char *map);
 t_fdf				*ft_fdf_init(void);
 int					ft_put_pxl_img(t_fdf *fdf, unsigned int color, int *id);
 int					ft_exit_fdf(char *msg, ...);
-int					ft_prepare_coord(t_fdf *fdf, t_datacoord *dc);
+int					ft_prepare_coord(t_fdf *fdf, t_datacoord **dc);
 int					ft_fill_coord(t_datacoord *dc, t_list *map_info);
+t_coord				*ft_coord_new(char *abs, int *j);
 void				ft_put_coordline(t_coord *line);
 
 #endif
