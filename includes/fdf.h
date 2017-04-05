@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/04 21:54:02 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/05 16:06:23 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct		s_datacoord
 	int				y;
 	int				i;
 	int				*pi;
+	t_list			*map_info;
+	t_coord			*cl_cpy;
 	t_coord			**coord_cpy;
 	char			*line_cpy;
 	int				nb_line;
@@ -56,15 +58,15 @@ typedef struct		s_fdf
 	t_coord			**coord;
 }					t_fdf;
 
-
-
 int					ft_get_map_info(t_fdf *fdf, char *map);
 t_fdf				*ft_fdf_init(void);
 int					ft_put_pxl_img(t_fdf *fdf, unsigned int color, int *id);
 int					ft_exit_fdf(char *msg, ...);
 int					ft_prepare_coord(t_fdf *fdf, t_datacoord **dc);
-int					ft_fill_coord(t_datacoord *dc, t_list *map_info);
+int					ft_fill_coord(t_datacoord *dc, t_fdf *fdf);
 t_coord				*ft_coord_new(char *abs, int *j);
-void				ft_put_coordline(t_coord *line);
+void				ft_put_coordline(t_coord **line);
+void				ft_putcoord(t_coord *line);
+int					ft_count_coord(t_coord *line);
 
 #endif

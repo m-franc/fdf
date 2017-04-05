@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 21:36:45 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/04 21:56:31 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/05 13:04:37 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_coord		*ft_coord_new(char *abs, int *j)
 	int		ci;
 	t_coord	*line;
 
-	if (!(line = (t_coord*)malloc(sizeof(t_coord))))
+	if (!(line = (t_coord*)malloc(sizeof(*line))))
 		return (NULL);
 	line->z = ft_atoi(abs);
 	ci = ft_ilen(line->z, 10);

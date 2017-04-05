@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 12:21:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/04 21:55:44 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/05 16:06:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int ac, char **av)
 {
 	t_fdf		*fdf;
 	t_datacoord	*datacoord;
-	t_list		*map_info_cpy;
 
 	if (!(fdf = ft_fdf_init()))
 		return (-1);
@@ -29,12 +28,13 @@ int	main(int ac, char **av)
 	datacoord = NULL;
 	if ((ft_prepare_coord(fdf, &datacoord)) == -1)
 		return (-1);
-	map_info_cpy = fdf->map_info;
-	if ((ft_fill_coord(datacoord, map_info_cpy)) == -1)
+	if ((ft_fill_coord(datacoord, fdf)) == -1)
 		return (-1);
+	ft_put_coordline(fdf->coord);
+//	ft_lstdel(&fdf->map_info);
 //	free(&datacoord);
-	datacoord = NULL;
-	ft_lstdel(&fdf->map_info);
+//	while free **coord
+//	free(&fdf);
 //	fdf->img_in_win =
 	//	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 50, 50);
 //	mlx_loop(fdf->mlx);
