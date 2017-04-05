@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 14:32:21 by mfranc            #+#    #+#             */
-/*   Updated: 2017/02/09 22:22:11 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/05 17:28:16 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,13 @@ void				remove_file(t_file **file)
 	supp = *file;
 	supp->fd = -1;
 	ft_strdel(&((*file)->tmp));
-	free(supp);
-	*file = (*file)->next;
+	if ((*file)->next)
+	{
+		free(supp);
+		*file = (*file)->next;
+	}
+	else
+		free(supp);
 }
 
 int					save_lines(char *ndtmp, t_file **file, char **line)

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 17:45:59 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/05 16:14:29 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/05 18:10:52 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			ft_count_coord(t_coord *line)
 
 void		ft_putcoord(t_coord *line)
 {
+	if (!line)
+		return ;
 	while (line)
 	{
 		ft_printf("{green}%d{eoc},{red}%lu{eoc} ", line->z, line->color);

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/05 16:06:23 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/05 17:21:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_fdf				*ft_fdf_init(void);
 int					ft_put_pxl_img(t_fdf *fdf, unsigned int color, int *id);
 int					ft_exit_fdf(char *msg, ...);
 int					ft_prepare_coord(t_fdf *fdf, t_datacoord **dc);
-int					ft_fill_coord(t_datacoord *dc, t_fdf *fdf);
+int					ft_fill_coord(t_datacoord *dc);
 t_coord				*ft_coord_new(char *abs, int *j);
 void				ft_put_coordline(t_coord **line);
 void				ft_putcoord(t_coord *line);
