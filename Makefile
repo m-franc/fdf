@@ -6,7 +6,7 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/24 16:24:51 by mfranc            #+#    #+#              #
-#    Updated: 2017/04/05 17:05:25 by mfranc           ###   ########.fr        #
+#    Updated: 2017/04/06 15:02:05 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS = $(addprefix $(P_SRCS), main.c	\
 		ft_fdf_init.c					\
 		parsing/ft_parse_map.c			\
 		parsing/ft_fill_coord.c			\
-		display/ft_put_coordline.c		\
+		display/ft_debugging.c			\
 		parsing/ft_prepare_coord.c		\
 		parsing/ft_coord_new.c)
 OBJS = $(SRC:%.c=%.o)
