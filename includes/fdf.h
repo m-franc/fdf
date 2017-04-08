@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/06 18:54:16 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/08 13:02:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # define ENDIAN 1
 # define LW 1001
 # define WW 1001
-# define PADDING (WW -1) / 100
+# define LI 500
+# define WI 500
 # define HEXA "0123456789abcdefABCDEF"
 
 typedef struct		s_coord

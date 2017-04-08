@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 21:07:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/06 18:48:48 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/08 11:21:10 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 int			ft_put_pxl_img(t_fdf *fdf, unsigned int color, int *id)
 {
 	int		shift;
-	char	*img;
 	int		d;
 
 	d = -1;
 	shift = 0;
-	img = fdf->addr;
-	while (++d < 4 && img[*id])
+	while (++d < 4)
 	{
-		img[*id] = (color >> shift) & 0xFF;
+		fdf->addr[*id] = (color >> shift) & 0xFF;
 		shift += 8;
 		*id += 1;
 	}

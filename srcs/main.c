@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 12:21:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/06 18:54:25 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/04/08 11:23:37 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 //	while free **coord
 //	free(&fdf);
 	fdf->img_in_win = 
-		mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 1, 1);
+		mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 50, 50);
 	mlx_loop(fdf->mlx);
 	return (0);
 }
