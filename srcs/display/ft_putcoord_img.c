@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:22:19 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/08 17:05:39 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/05/31 13:14:02 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	ft_putlpoint(t_fdf *fdf, t_coord *line_point, int *pj, int *pi)
 	padding = WI / len_line;
 	while (line_point)
 	{
+		PSTR("====")
 //		if (ft_strlen(fdf->addr + *pj) >= 4)
 //		{
 			if ((ft_put_pxl_img(fdf, line_point->color, pj)) == -1)
