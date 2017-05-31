@@ -6,58 +6,47 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:22:19 by mfranc            #+#    #+#             */
-/*   Updated: 2017/05/31 13:14:02 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/05/31 18:24:59 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	ft_putlpoint(t_fdf *fdf, t_coord *line_point, int *pj, int *pi)
+static int	ft_putlpoint(t_fdf *fdf, t_coord **x, int *y)
 {
-	t_coord	*tmp;
-	size_t	len_line;
-	int		padding;
-	int		i;
+	int		x;
+	int		y;
+	double	a;
+	double	b;
 
-	i = 0;
-	tmp = line_point;
-	len_line = ft_count_coord(tmp);
-	padding = WI / len_line;
-	while (line_point)
-	{
-		PSTR("====")
-//		if (ft_strlen(fdf->addr + *pj) >= 4)
-//		{
-			if ((ft_put_pxl_img(fdf, line_point->color, pj)) == -1)
-				return (-1);
-			*pj += (WI * (*pi + 1)) + (len_line - ft_count_coord(line_point));
-		//	if (ft_strlen(fdf->addr + *pj) >= (WI / len_line))
-//		}
-//		else
-//			break ;
-		line_point = line_point->next;
-	}
-	return (1);
+	a = 
 }
 
-int			ft_putcoord_img(t_fdf *fdf)
+/*int			ft_putcoord_img(t_fdf *fdf)
 {
-	t_coord	**points;
+	t_coord	**x;
+	t_coord	*x_if[2]
+	int		y;
+	int		y_if[2];
 	int		i;
-	int		*pi;
 	int		j;
-	int		*pj;
 
-	ft_putcoord(fdf->coord);
-	points = fdf->coord;
-	i = -1;
-	j = 0;
-	pi = &i;
-	pj = &j;
-	while (points[++i])
+	y = 0;
+	x[0] = fdf->coord[y];
+	while (points[++y])
 	{
-		if ((ft_putlpoint(fdf, points[i], pj, pi)) == -1)
-			return (-1);
+		while (x[0])
+		{	
+			i = 0;
+			x_if[0] = x[0];
+			x_if[1] = x[0]->next;
+			y_if[0] = y;
+			y_if[1] = y + 1;
+			if ((ft_putlpoint(fdf, x_if, y_if)) == -1)
+				return (-1);
+			x[0] = x[0]->next;
+			i++;
+		}
 	}
 	return (1);
-}
+}*/

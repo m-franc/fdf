@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 12:21:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/05/31 13:19:53 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/05/31 14:42:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ int	main(int ac, char **av)
 		return (-1);
 	if ((ft_fill_coord(datacoord)) == -1)
 		return (-1);
-//	ft_putcoord(fdf->coord);
-//	if ((ft_putcoord_img(fdf)) == -1)
-//		return (-1);
+	if ((ft_putcoord_img(fdf)) == -1)
+		return (-1);
 //	ft_putcoord(fdf->coord);
 //	ft_lstdel(&fdf->map_info);
 //	free(&datacoord);

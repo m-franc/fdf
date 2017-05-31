@@ -6,21 +6,26 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/24 16:24:51 by mfranc            #+#    #+#              #
-#    Updated: 2017/05/31 11:43:04 by mfranc           ###   ########.fr        #
+#    Updated: 2017/05/31 15:44:14 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 P_SRCS = srcs/
 P_OBJS = objs/
+
 P_LIBFT = libft/
+LIBFT = $(P_LIBFT)libftprintf.a
+
 P_MLX = minilibx/
+MLX = $(P_MLX)libmlx.a
+
 P_INC_LIBFT = libft/includes/
 P_INC_FDF = includes/
 ALL_INC = -I $(P_INC_FDF) -I $(P_INC_LIBFT) -I $(P_MLX)
-CC = clang -Wall -Wextra -Werror -fsanitize=address 
-G_FLAGS = -framework OpenGL -framework AppKit
-ALL_LIB = -lm -L $(P_LIBFT) -lftprintf -L $(P_MLX) -lmlx
+G_FLAGS = -framework OpenGL -framework AppKit 
+CC = clang -Wall -Wextra -Werror -fsanitize=address
+CMD_LIB = -lm -L $(P_LIBFT) -lftprintf -L $(P_MLX) -lmlx $(G_FLAGS)
 SRCS = $(addprefix $(P_SRCS), main.c	\
 	   	ft_exit_fdf.c					\
 		display/ft_put_pxl_img.c		\
@@ -31,20 +36,22 @@ SRCS = $(addprefix $(P_SRCS), main.c	\
 		parsing/ft_prepare_coord.c		\
 		parsing/ft_coord_new.c			\
 		display/ft_putcoord_img.c)
-OBJS = $(SRC:%.c=%.o)
+OBJS = $(SRCS:%.c=%.o)
 
 .PHONY: all clean flcean re
 
 all: $(NAME)
 
-lib:
+$(NAME): $(MLX) $(LIBFT) $(OBJS)
+	$(CC) $^ -o $@ $(ALL_INC) $(CMD_LIB)
+
+$(LIBFT):
 	@make -C $(P_LIBFT)
+
+$(MLX):
 	@make -C $(P_MLX)
 
-$(NAME): lib $(OBJS)
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) $(ALL_INC) $(ALL_LIB) $(G_FLAGS)
-
-%.o: %.c $(P_INC_FDF)
+%.o: %.c
 	$(CC) -o $@ -c $< $(ALL_INC)
 
 clean:

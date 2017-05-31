@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 21:07:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/08 17:10:48 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/05/31 18:05:14 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ int			ft_put_pxl_img(t_fdf *fdf, unsigned int color, int *id)
 		shift += 8;
 		*id += 1;
 	}
-	if (shift != 32)
-		return (ft_exit_fdf("put_pxl_img", NULL));
 	return (1);
 }
