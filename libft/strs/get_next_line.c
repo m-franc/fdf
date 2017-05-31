@@ -6,11 +6,12 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 14:32:21 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/05 17:28:16 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/05/31 12:02:37 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 t_file				*lstnew(t_file **begin, int fd)
 {
@@ -70,13 +71,8 @@ void				remove_file(t_file **file)
 	supp = *file;
 	supp->fd = -1;
 	ft_strdel(&((*file)->tmp));
-	if ((*file)->next)
-	{
-		free(supp);
-		*file = (*file)->next;
-	}
-	else
-		free(supp);
+	*file = (*file)->next;
+	free(supp);
 }
 
 int					save_lines(char *ndtmp, t_file **file, char **line)
@@ -118,7 +114,7 @@ int					get_next_line(const int fd, char **line)
 	file = get_file(&file, fd);
 	*line = NULL;
 	ndtmp = ft_strchr(file->tmp, '\n');
-	while (!ndtmp || *((file)->tmp))
+	while (!ndtmp)
 	{
 		if ((ret = read(file->fd, buf, BUFF_SIZE)) == 0)
 			break ;

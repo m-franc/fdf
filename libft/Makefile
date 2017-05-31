@@ -6,13 +6,13 @@
 #    By: mfranc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 18:43:40 by mfranc            #+#    #+#              #
-#    Updated: 2017/03/30 18:33:04 by mfranc           ###   ########.fr        #
+#    Updated: 2017/05/31 12:46:09 by mfranc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 CC = gcc $(FLAGS)
 
@@ -182,7 +182,12 @@ SRCS = 	mems/ft_memset.c				\
 		ft_printf/customs/ft_blink.c	\
 		ft_printf/customs/ft_reverse.c	\
 		ft_printf/customs/ft_hidden.c	\
-		ft_printf/customs/ft_italic.c
+		ft_printf/customs/ft_italic.c	\
+		strs/ft_tablen.c		\
+		strs/ft_tabdel.c		\
+		maths/ft_sort_int_tab.c	\
+		maths/ft_get_median.c	\
+		maths/ft_abs.c
 
 OBJECTS = $(SRCS:%.c=%.o)
 

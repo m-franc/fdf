@@ -1,46 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_coordline.c                                 :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/01 17:45:59 by mfranc            #+#    #+#             */
-/*   Updated: 2017/05/31 12:35:14 by mfranc           ###   ########.fr       */
+/*   Created: 2017/04/22 17:47:29 by mfranc            #+#    #+#             */
+/*   Updated: 2017/04/22 18:30:53 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int			ft_count_coord(t_coord *line)
+void	ft_sort_int_tab(int *tab, unsigned int size)
 {
-	int i = 0;
-	while (line)
+	unsigned int	i;
+	int				tmp;
+
+	i = 0;
+	while (i < size)
 	{
-		line = line->next;
+		while (tab[i] > tab[i + 1])
+		{
+			tmp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = tmp;
+			i = 0;
+		}
 		i++;
 	}
-	return (i);
-}
-
-void		ft_putline(t_coord *line)
-{
-	if (!line)
-		return ;
-	ft_printf("ligne : \n");
-	while (line)
-	{
-		ft_printf("{green}%d{eoc},{red}%lu{eoc} ", line->z, line->color);
-		line = line->next;
-	}
-	ENDL
-}
-
-void		ft_putcoord(t_coord **coord)
-{
-	int	i;
-
-	i = -1;
-	while (coord[++i])
-		ft_putline(coord[i]);
 }

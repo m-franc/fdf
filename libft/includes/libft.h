@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 18:04:22 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/30 18:33:27 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/05/30 16:15:21 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef	struct		s_list
 # define ENDL ft_putchar('\n');
 # define ABS(Value) Value < 0 ? -Value : Value
 # define PNBR(x) ft_putintendl(x, 10, BASEUP);
-# define PSTR(x) ft_putstr(x);
+# define PSTR(x) ft_putendl(x);
 # define INTMIN -2147483648
 # define INTMAX 2147483647
 # define UINTMAX 4294967295
@@ -79,6 +79,7 @@ int					ft_tolower(int c);
 
 void				*ft_memalloc(size_t n);
 void				ft_memdel(void **ap);
+void				ft_tabdel(char ***tab);
 char				*ft_strnew(size_t n);
 void				ft_strdel(char **as);
 void				ft_strclr(char *s);
@@ -141,6 +142,8 @@ char				*ft_vtob(const void *c, size_t size);
 int					ft_isword(char c);
 int					ft_countword(char const *s);
 void				**ft_tabnew(size_t n);
+void				ft_sort_int_tab(int *tab, unsigned int size);
+int					ft_get_median(int *tab, unsigned int size);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lststrnew(void const *content, size_t content_size);
@@ -151,6 +154,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_strsplit_tolist(char const *s, char c);
 int					ft_sqrt(int nb);
+int					ft_abs(int nb);
 long long			ft_power(long long nb, int power);
 void				ft_putlist(t_list *lst);
 size_t				ft_listcount(t_list *lst);

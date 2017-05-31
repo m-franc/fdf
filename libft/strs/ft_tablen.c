@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/02 19:50:50 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/22 18:18:04 by mfranc           ###   ########.fr       */
+/*   Created: 2017/03/30 16:31:41 by mfranc            #+#    #+#             */
+/*   Updated: 2017/03/31 11:58:31 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_sqrt(int nb)
+size_t	ft_tablen(char **tab)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	while (i < nb / 2)
-	{
-		if (i * i == nb)
-		{
-			if (nb % i == 0)
-				return (i);
-		}
-		i++;
-	}
-	return (0);
+	len = 0;
+	if (!tab)
+		return (0);
+	while (tab[len])
+		len++;
+	return (len);
 }

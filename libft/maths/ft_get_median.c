@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_get_median.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/02 19:50:50 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/22 18:18:04 by mfranc           ###   ########.fr       */
+/*   Created: 2017/04/22 18:20:07 by mfranc            #+#    #+#             */
+/*   Updated: 2017/04/22 18:28:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_sqrt(int nb)
+int			ft_get_median(int *tab, unsigned int size)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (i < nb / 2)
-	{
-		if (i * i == nb)
-		{
-			if (nb % i == 0)
-				return (i);
-		}
+	while (i < (size / 2))
 		i++;
-	}
-	return (0);
+	return (tab[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 12:10:33 by mfranc            #+#    #+#             */
-/*   Updated: 2017/03/24 22:33:20 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/05/31 12:52:56 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int	ft_find_custom(char **s, int *i)
 int			ft_buff_customer(char **ucvchar)
 {
 	int		i;
+	int		find_custom;
 
 	if (!(ft_strchr(ucvchar[0], '{')))
 		return (0);
@@ -78,8 +79,11 @@ int			ft_buff_customer(char **ucvchar)
 		{
 			if (ucvchar[0][i] == '{')
 			{
-				if ((ft_find_custom(ucvchar, &i)) == -1)
+				if ((find_custom = ft_find_custom(ucvchar, &i)) == -1)
 					return (-1);
+				else if (find_custom == 1)
+					i--;
+				
 			}
 		}
 		return (1);
