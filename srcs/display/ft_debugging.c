@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 17:45:59 by mfranc            #+#    #+#             */
-/*   Updated: 2017/05/31 14:43:43 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/05/31 19:50:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_putline(t_coord *line)
 	ft_putchar('|');
 	while (line)
 	{
-		ft_printf("{grey}%d{eoc} ", line->z);
+		ft_printf("{grey}%d{eoc},{cyan}%d{eoc}", line->z, line->color);
 		line = line->next;
 	}
 	ft_putchar('|');
