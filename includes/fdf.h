@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/01 13:08:28 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/01 18:45:34 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int					ft_fill_coord(t_datacoord *dc);
 t_coord				*ft_coord_new(char *abs, int *j);
 
 int					ft_putcoord_img(t_fdf *fdf);
-int					ft_putlpoint(t_fdf *fdf, int xi, int xf, int xy, int yf);
+int					ft_putlpoint(t_fdf *fdf, int x_start, int y_start, int x_end, int y_end);
 
 void				ft_putline(t_coord *line);
 void				ft_putcoord(t_coord **coord);

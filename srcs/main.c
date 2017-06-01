@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 12:21:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/01 12:43:39 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/01 19:27:58 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,26 @@ int	main(int ac, char **av)
 		return (-1);
 	if ((ft_fill_coord(datacoord)) == -1)
 		return (-1);
-	if ((ft_putlpoint(fdf, 0, 0, 50, 50)))
+	if ((ft_putlpoint(fdf, 45, 45, 90, 90)))
 		return (-1);
+/*	if ((ft_putlpoint(fdf, 45, 45, 90, 80)))
+		return (-1);
+	if ((ft_putlpoint(fdf, 45, 45, 90, 70)))
+		return (-1);
+	if ((ft_putlpoint(fdf, 45, 45, 90, 60)))
+		return (-1);
+	if ((ft_putlpoint(fdf, 45, 45, 90, 50)))
+		return (-1);
+	if ((ft_putlpoint(fdf, 45, 45, 90, 40)))
+		return (-1);
+	if ((ft_putlpoint(fdf, 45, 45, 90, 30)))
+		return (-1);
+	if ((ft_putlpoint(fdf, 45, 45, 90, 20)))
+		return (-1);
+	if ((ft_putlpoint(fdf, 45, 45, 90, 10)))
+		return (-1);
+	if ((ft_putlpoint(fdf, 90, 90, 90, 90)))
+		return (-1);*/
 //	if ((ft_putcoord_img(fdf)) == -1)
 	//	return (-1);
 //	ft_putcoord(fdf->coord);

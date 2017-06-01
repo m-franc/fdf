@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 21:06:55 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/01 12:35:10 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/01 16:35:55 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,5 @@ int			ft_fdf_init(t_fdf **fdf)
 	(*fdf)->endian = ENDIAN;
 	(*fdf)->addr = mlx_get_data_addr((*fdf)->img, &(*fdf)->b_pxl,
 			&(*fdf)->size_l, &(*fdf)->endian);
-	PNBR((*fdf)->size_l)
-	PNBR(LI)
 	return (1);
 }
