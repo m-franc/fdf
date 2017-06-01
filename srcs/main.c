@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 12:21:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/05/31 19:50:38 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/01 12:43:39 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	main(int ac, char **av)
 		return (-1);
 	if ((ft_fill_coord(datacoord)) == -1)
 		return (-1);
-	ft_putcoord(fdf->coord);
-	if ((ft_putlpoint(fdf, 0, 200, 0, 200)))
+	if ((ft_putlpoint(fdf, 0, 0, 50, 50)))
 		return (-1);
 //	if ((ft_putcoord_img(fdf)) == -1)
 	//	return (-1);
@@ -42,7 +41,7 @@ int	main(int ac, char **av)
 //	while free **coord
 //	free(&fdf);
 	fdf->img_in_win = 
-		mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 50, 50);
+		mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
 	mlx_loop(fdf->mlx);
 	return (0);
 }

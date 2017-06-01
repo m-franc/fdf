@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/05/31 19:47:07 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/01 13:08:28 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct		s_fdf
 }					t_fdf;
 
 int					ft_fdf_init(t_fdf **fdf);
-int					ft_put_pxl_img(t_fdf *fdf, unsigned int color, int *id);
+int					ft_put_pxl_img(t_fdf *fdf, unsigned int color, int id);
 int					ft_exit_fdf(char *msg, ...);
 
 int					ft_get_map_info(t_fdf *fdf, char *map);

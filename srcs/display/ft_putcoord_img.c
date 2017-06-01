@@ -6,32 +6,30 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:22:19 by mfranc            #+#    #+#             */
-/*   Updated: 2017/05/31 19:54:48 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/01 13:11:52 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_putlpoint(t_fdf *fdf, int xi, int xf, int yi, int yf)
+int	ft_putlpoint(t_fdf *fdf, int xi, int yi, int xf, int yf)
 {
 	int		x;
 	int		y;
 	double	a;
 	double	b;
-	int		i;
+	int		coord;
 
-	i = 0;
-	(void)fdf;
-	a = (yf - yi) / (xi - xf);
+	a = (double)((yf - yi) / (xf - xi));
 	b = yi - a * xi;
 	x = xi;
 	while (x <= xf)
 	{
 		y = (a * x + b);
-		if ((ft_put_pxl_img(fdf, 16777215, &i)) == -1)
-			return (-1);
+		coord = (y * LI + x);
+		if ((ft_put_pxl_img(fdf, 0xFFFFFF, coord)) == -1)
+			return (0);
 		x++;
-		i++;
 	}
 	return (0);
 }
