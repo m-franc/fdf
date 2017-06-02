@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/01 18:45:34 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/02 18:33:26 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define ENDIAN 1
 # define LW 1001
 # define WW 1001
-# define LI 100
-# define WI 100
+# define LI 500
+# define WI 500
 # define HEXA "0123456789abcdefABCDEF"
 
 typedef struct		s_coord
@@ -61,6 +61,16 @@ typedef struct		s_fdf
 	t_list			*map_info;
 	t_coord			**coord;
 }					t_fdf;
+
+typedef struct		s_drawdatas
+{
+	int	x;
+	int	y;
+	int	distance_x;
+	int	distance_y;
+	int	x_inc;
+	int	y_inc;
+}					t_draw_datas;
 
 int					ft_fdf_init(t_fdf **fdf);
 int					ft_put_pxl_img(t_fdf *fdf, unsigned int color, int id);

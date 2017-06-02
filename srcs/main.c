@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 12:21:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/01 19:27:58 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/02 20:18:13 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int ac, char **av)
 {
 	t_fdf		*fdf;
 	t_datacoord	*datacoord;
+	int			x_end;
+	int			y_end;
 
 	fdf = NULL;
 	if ((ft_fdf_init(&fdf)) == -1)
@@ -31,26 +33,38 @@ int	main(int ac, char **av)
 		return (-1);
 	if ((ft_fill_coord(datacoord)) == -1)
 		return (-1);
-	if ((ft_putlpoint(fdf, 45, 45, 90, 90)))
-		return (-1);
-/*	if ((ft_putlpoint(fdf, 45, 45, 90, 80)))
-		return (-1);
-	if ((ft_putlpoint(fdf, 45, 45, 90, 70)))
-		return (-1);
-	if ((ft_putlpoint(fdf, 45, 45, 90, 60)))
-		return (-1);
-	if ((ft_putlpoint(fdf, 45, 45, 90, 50)))
-		return (-1);
-	if ((ft_putlpoint(fdf, 45, 45, 90, 40)))
-		return (-1);
-	if ((ft_putlpoint(fdf, 45, 45, 90, 30)))
-		return (-1);
-	if ((ft_putlpoint(fdf, 45, 45, 90, 20)))
-		return (-1);
-	if ((ft_putlpoint(fdf, 45, 45, 90, 10)))
-		return (-1);
-	if ((ft_putlpoint(fdf, 90, 90, 90, 90)))
-		return (-1);*/
+	x_end = LI;
+	y_end = LI;
+	while (y_end >= 0)
+	{
+		if ((ft_putlpoint(fdf, LI / 2, LI / 2, x_end, y_end)))
+			return (-1);
+		y_end -= 10;
+	}
+	y_end = LI;
+	while (x_end >= 0)
+	{
+		if ((ft_putlpoint(fdf, LI / 2, LI / 2, x_end, y_end)))
+			return (-1);
+		x_end -= 10;
+	}
+	y_end = LI;
+	x_end = 0;
+	while (y_end >= 0)
+	{
+		if ((ft_putlpoint(fdf, LI / 2, LI / 2, x_end, y_end)))
+			return (-1);
+		y_end -= 10;
+	}
+	y_end = 0;
+	x_end = 0;
+	while (x_end <= LI)
+	{
+		if ((ft_putlpoint(fdf, LI / 2, LI / 2, x_end, y_end)))
+			return (-1);
+		x_end += 10;
+	}
+	
 //	if ((ft_putcoord_img(fdf)) == -1)
 	//	return (-1);
 //	ft_putcoord(fdf->coord);
