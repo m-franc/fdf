@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 21:36:45 by mfranc            #+#    #+#             */
-/*   Updated: 2017/04/06 14:39:21 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/03 18:59:47 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_get_color(char **abs, int ci, int *j, t_coord **line)
 	char	*color_hexa;
 	char	*hexa_to_dec;
 
-	if (!(ft_strstr(*abs + (ci + 1), "0x")))
+	if (!(ft_strnstr(*abs + (ci + 1), "0x", 2)))
 		return (-1);
 	if (!(color_hexa = ft_strsub(*abs, ci + 3,
 					ft_strspn(*abs + (ci + 3), HEXA))))
@@ -31,13 +31,15 @@ static int	ft_get_color(char **abs, int ci, int *j, t_coord **line)
 	return (1);
 }
 
-t_coord		*ft_coord_new(char *abs, int *j)
+t_coord		*ft_coord_new(char *abs, int *j, int x, int y)
 {
 	int		ci;
 	t_coord	*line;
 
 	if (!(line = (t_coord*)malloc(sizeof(t_coord))))
 		return (NULL);
+	line->x = x;
+	line->y = y;
 	line->z = ft_atoi(abs);
 	ci = ft_ilen(line->z, 10);
 	*j += ci;

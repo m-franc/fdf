@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/02 18:33:26 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/03 18:49:09 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 
 typedef struct		s_coord
 {
+	int				x;
+	int				y;
 	int				z;
 	unsigned int	color;
 	struct s_coord	*next;
@@ -38,6 +40,7 @@ typedef struct		s_coord
 
 typedef struct		s_datacoord
 {
+	int				x;
 	int				y;
 	int				i;
 	int				*pi;
@@ -64,12 +67,12 @@ typedef struct		s_fdf
 
 typedef struct		s_drawdatas
 {
-	int	x;
-	int	y;
-	int	distance_x;
-	int	distance_y;
-	int	x_inc;
-	int	y_inc;
+	int				x;
+	int				y;
+	int				distance_x;
+	int				distance_y;
+	int				x_inc;
+	int				y_inc;
 }					t_draw_datas;
 
 int					ft_fdf_init(t_fdf **fdf);
@@ -79,7 +82,7 @@ int					ft_exit_fdf(char *msg, ...);
 int					ft_get_map_info(t_fdf *fdf, char *map);
 int					ft_prepare_coord(t_fdf *fdf, t_datacoord **dc);
 int					ft_fill_coord(t_datacoord *dc);
-t_coord				*ft_coord_new(char *abs, int *j);
+t_coord				*ft_coord_new(char *abs, int *j, int x, int y);
 
 int					ft_putcoord_img(t_fdf *fdf);
 int					ft_putlpoint(t_fdf *fdf, int x_start, int y_start, int x_end, int y_end);
