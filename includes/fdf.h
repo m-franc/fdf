@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/03 18:49:09 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/04 21:50:14 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define ENDIAN 1
 # define LW 1001
 # define WW 1001
-# define LI 500
-# define WI 500
+# define LI 900
+# define WI 900
 # define HEXA "0123456789abcdefABCDEF"
 
 typedef struct		s_coord
@@ -84,7 +84,7 @@ int					ft_prepare_coord(t_fdf *fdf, t_datacoord **dc);
 int					ft_fill_coord(t_datacoord *dc);
 t_coord				*ft_coord_new(char *abs, int *j, int x, int y);
 
-int					ft_putcoord_img(t_fdf *fdf);
+int					ft_putcoord_img(t_fdf *fdf, t_datacoord *dc);
 int					ft_putlpoint(t_fdf *fdf, int x_start, int y_start, int x_end, int y_end);
 
 void				ft_putline(t_coord *line);

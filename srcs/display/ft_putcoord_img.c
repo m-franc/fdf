@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:22:19 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/03 19:17:57 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/04 21:50:12 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,22 +82,31 @@ int					ft_putlpoint(t_fdf *fdf, int x_start, int y_start, int x_end, int y_end)
 	return (0);
 }
 
-int					ft_putcoord_img(t_fdf *fdf)
+int					ft_putcoord_img(t_fdf *fdf, t_datacoord *dc)
 {
 	t_coord			**points;
-	t_coord			*x_cpy;
+	t_coord			**p_cpy;
 	int				i;
 
 	i = 0;
 	points = fdf->coord;
-	x_cpy = points[i];
-	while (points[i])
+	p_cpy = points;
+	while (i < dc->nb_line)
 	{
-		while (points[i] && points[i]->next)
+		while (points[i])
 		{
-			if ((ft_putlpoint(fdf, points[i]->x, points[i]->y,
-							(points[i]->x), points[i]->y)) == -1)
-				return (-1);
+			if (points[i]->next)
+			{
+				points[i]->next->x *= 20;
+				points[i]->y *= 20;
+				if ((ft_putlpoint(fdf, points[i]->x, points[i]->y, points[i]->next->x, points[i]->y)) == -1)
+					return (-1);	
+			}
+			if (i < (dc->nb_line - 1))
+			{				
+				if ((ft_putlpoint(fdf, points[i]->x, points[i]->y, points[i]->x, points[i + 1]->y * 20)) == -1)
+					return (-1);	
+			}
 			points[i] = points[i]->next;
 		}
 		i++;
