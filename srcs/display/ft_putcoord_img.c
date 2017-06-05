@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:22:19 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/05 16:36:06 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/05 18:45:01 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void			ft_put_vert_segm(t_fdf *fdf, t_draw_datas draw_datas)
 	{
 		draw_datas.y +=draw_datas. y_inc;
 		cumul +=draw_datas. distance_x;
-		if (cumul >=draw_datas. distance_y)
+		if (cumul >= draw_datas. distance_y)
 		{
 			cumul -= draw_datas. distance_y;
 			draw_datas.x +=draw_datas. x_inc;
@@ -82,7 +82,7 @@ int					ft_putlpoint(t_fdf *fdf, int x_start, int y_start, int x_end, int y_end)
 	return (0);
 }
 
-void			ft_ratio_application(t_coord **coord)
+void			ft_iso_application(t_coord **coord)
 {
 	int		i;
 	t_coord	*tmp;
@@ -93,16 +93,56 @@ void			ft_ratio_application(t_coord **coord)
 		tmp = coord[i];
 		while (tmp)
 		{
-			tmp->x *= 20;
-			tmp->y *= 20;
-			tmp->z *= 20;
+			tmp->x = (tmp->x - tmp->y) / 2;
+			tmp->y = ((tmp->x + tmp->y) / 2) - (tmp->z / 2);
 			tmp = tmp->next;
 		}
 		i++;
 	}
 }
 
-static t_coord*		ft_get_down_point(t_coord *act_point, int index)
+void			ft_ratio_application(t_coord **coord, t_datacoord *dc)
+{
+	int		i;
+	t_coord	*tmp;
+
+	i = 0;
+	(void)dc;
+	while (coord[i])
+	{
+		tmp = coord[i];
+		while (tmp)
+		{
+			tmp->x *= 10;
+			tmp->y *= 10;
+			tmp->z *= 10;
+			tmp = tmp->next;
+		}
+		i++;
+	}
+}
+
+void			ft_placement_application(t_coord **coord, t_datacoord *dc)
+{
+	int		i;
+	t_coord	*tmp;
+
+	i = 0;
+	(void)dc;
+	while (coord[i])
+	{
+		tmp = coord[i];
+		while (tmp)
+		{
+			tmp->x += (LI / 2) - (dc->x / 2);
+			tmp->y += (WI / 2) - (dc->y / 2);
+			tmp = tmp->next;
+		}
+		i++;
+	}
+}
+
+static t_coord	*ft_get_down_point(t_coord *act_point, int index)
 {
 	while (act_point && index-- > 0)
 		act_point = act_point->next;
@@ -117,7 +157,9 @@ int					ft_putcoord_img(t_fdf *fdf, t_datacoord *dc)
 	int				j;
 
 	i = 0;
-	ft_ratio_application(fdf->coord);
+	ft_ratio_application(fdf->coord, dc);
+	ft_iso_application(fdf->coord);
+	ft_placement_application(fdf->coord, dc);
 	while (i < dc->nb_line)
 	{
 		j = 0;
