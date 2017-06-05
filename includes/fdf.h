@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/04 21:50:14 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/05 15:27:25 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # define BITS_PER_PIXEL 32
 # define SIZE_LINE 4
 # define ENDIAN 1
-# define LW 1001
-# define WW 1001
-# define LI 900
-# define WI 900
+# define LW 2000
+# define WW 1300
+# define LI 1990
+# define WI 1290
 # define HEXA "0123456789abcdefABCDEF"
 
 typedef struct		s_coord

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 21:06:55 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/01 16:35:55 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/05 15:27:21 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			ft_fdf_init(t_fdf **fdf)
 		return (-1);
 	(*fdf)->mlx = mlx_init();
 	(*fdf)->win = mlx_new_window((*fdf)->mlx, LW, WW, "42");
-	(*fdf)->img = mlx_new_image((*fdf)->mlx, WI, LI);
+	(*fdf)->img = mlx_new_image((*fdf)->mlx, LI, WI);
 	(*fdf)->b_pxl = BITS_PER_PIXEL;
 	(*fdf)->size_l = SIZE_LINE;
 	(*fdf)->endian = ENDIAN;
