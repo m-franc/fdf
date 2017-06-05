@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:22:19 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/04 21:50:12 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/05 12:45:05 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,29 +82,46 @@ int					ft_putlpoint(t_fdf *fdf, int x_start, int y_start, int x_end, int y_end)
 	return (0);
 }
 
+void			ft_ratio_application(t_coord **coord)
+{
+	int		i;
+	t_coord	**cpy;
+
+	i = 0;
+	cpy = coord;
+	while (cpy[i])
+	{
+		while (cpy[i])
+		{
+			cpy[i]->x *= 20;
+			cpy[i]->y *= 20;
+			cpy[i] = cpy[i]->next;
+		}
+		i++;
+	}
+	ft_putcoord(coord);
+}
+
 int					ft_putcoord_img(t_fdf *fdf, t_datacoord *dc)
 {
 	t_coord			**points;
-	t_coord			**p_cpy;
 	int				i;
 
 	i = 0;
 	points = fdf->coord;
-	p_cpy = points;
+	ft_ratio_application(points);
 	while (i < dc->nb_line)
 	{
 		while (points[i])
 		{
 			if (points[i]->next)
 			{
-				points[i]->next->x *= 20;
-				points[i]->y *= 20;
-				if ((ft_putlpoint(fdf, points[i]->x, points[i]->y, points[i]->next->x, points[i]->y)) == -1)
+				if ((ft_putlpoint(fdf, points[i]->x, points[i]->y, points[i]->next->x, points[i]->next->y)) == -1)
 					return (-1);	
 			}
 			if (i < (dc->nb_line - 1))
 			{				
-				if ((ft_putlpoint(fdf, points[i]->x, points[i]->y, points[i]->x, points[i + 1]->y * 20)) == -1)
+				if ((ft_putlpoint(fdf, points[i]->x, points[i]->y, points[i + 1]->x, points[i + 1]->y)) == -1)
 					return (-1);	
 			}
 			points[i] = points[i]->next;
