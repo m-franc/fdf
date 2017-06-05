@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:22:19 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/05 15:25:50 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/05 16:36:06 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ void			ft_ratio_application(t_coord **coord)
 		tmp = coord[i];
 		while (tmp)
 		{
-			tmp->x *= 2;
-			tmp->y *= 2;
-			tmp->z *= 2;
+			tmp->x *= 20;
+			tmp->y *= 20;
+			tmp->z *= 20;
 			tmp = tmp->next;
 		}
 		i++;
@@ -111,31 +111,28 @@ static t_coord*		ft_get_down_point(t_coord *act_point, int index)
 
 int					ft_putcoord_img(t_fdf *fdf, t_datacoord *dc)
 {
-	t_coord			**points;
+	t_coord			*point;
 	t_coord			*down_point;
 	int				i;
 	int				j;
 
 	i = 0;
-	points = fdf->coord;
-	ft_ratio_application(points);
+	ft_ratio_application(fdf->coord);
 	while (i < dc->nb_line)
 	{
 		j = 0;
-		while (points[i])
+		point = fdf->coord[i];
+		while (point)
 		{
-			if (points[i]->next)
-			{
-				PNBR(i)
-				ft_putlpoint(fdf, points[i]->x, points[i]->y, points[i]->next->x, points[i]->next->y);
-			}
+			if (point->next)
+				ft_putlpoint(fdf, point->x, point->y, point->next->x, point->next->y);
 			if (i < (dc->nb_line - 1))
-			{				
-				down_point = ft_get_down_point(points[i + 1], j);
-				ft_putlpoint(fdf, points[i]->x, points[i]->y, down_point->x, down_point->y);
+			{
+				down_point = ft_get_down_point(fdf->coord[i + 1], j);
+				ft_putlpoint(fdf, point->x, point->y, down_point->x, down_point->y);
 			}
 			j++;
-			points[i] = points[i]->next;
+			point = point->next;
 		}
 		i++;
 	}
