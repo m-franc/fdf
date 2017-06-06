@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 12:08:46 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/06 19:32:43 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/06 20:19:14 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,53 +100,75 @@ void			ft_ratio_application(t_coord **coord, t_datacoord *dc)
 	}
 }
 
-void			ft_placement_application(t_coord **coord, t_datacoord *dc)
+int				ft_get_min_max_x(t_coord **coord, int *x_max)
 {
-	int		i;	
-	int		x_max;
-	int		x_min;
-	int		y_max;
-	int		y_min;
-	int		padding_side;
-	int		padding_tb;
-	t_coord	*tmp;
-	t_coord	*cpy;
-	int		z;
+	int			i;
+	int			x_min;
+	t_coord		*cpy;
 
-	(void)dc;
-	i = 0;	
+	i = 0;
+	while (coord[i])
+	{
+		cpy = coord[i];
+		x_min = cpy->x;
+		while (cpy)
+		{
+			if (i == 0 && !cpy->next)
+				*x_max = cpy->x;
+			cpy = cpy->next;
+		}
+		i++;
+	}
+	return (x_min);
+}
+
+int				ft_get_min_max_y(t_datacoord *dc, t_coord **coord, int *y_max)
+{
+	int			i;
+	int			y_min;
+	t_coord		*cpy;
+
+	i = 0;
 	while (coord[i])
 	{
 		cpy = coord[i];
 		if (i == 0)
 			y_min = cpy->y;
-		x_min = cpy->x;
 		while (cpy)
 		{
-			if (i == 0 && !cpy->next)
-				x_max = cpy->x;
 			if (i == dc->y - 1 && !cpy->next)
-				y_max = cpy->y;
+				*y_max = cpy->y;
 			cpy = cpy->next;
 		}
 		i++;
 	}
-	i = 0;
-	padding_side = (LI - ft_abs(x_max) + ft_abs(x_min)) / 2;
-	padding_tb = (WI - ft_abs(y_max) + ft_abs(y_min)) / 2;
+	return (y_min);
+}
+
+void			ft_placement_application(t_coord *tmp, t_coord **coord, t_datacoord *dc)
+{
+	int		x_max;
+	int		x_min;
+	int		y_max;
+	int		y_min;
+	int		z;
+
+	x_max = 0;
+	y_max = 0;
+	x_min = ft_get_min_max_x(coord, &x_max);
+	y_min = ft_get_min_max_y(dc, coord, &y_max);
 	z = ft_get_padd_z(coord);
-	while (coord[i])
+	while (*coord)
 	{
-		tmp = coord[i];
+		tmp = *coord;
 		while (tmp)
 		{
-			tmp->x += padding_side;
-			tmp->y += padding_tb;
-			PNBR(z)
+			tmp->x += ((LI - ft_abs(x_max) + ft_abs(x_min)) / 2);
+			tmp->y += ((WI - ft_abs(y_max) + ft_abs(y_min)) / 2);
 			if (z >= LI)
 				tmp->y += y_max;
 			tmp = tmp->next;
 		}
-		i++;
+		coord++;
 	}
 }
