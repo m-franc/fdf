@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 12:21:05 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/06 23:34:59 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/06 23:50:26 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				ft_parsing(t_fdf **fdf,
 		return (-1);
 	if (ac == 1)
 		return (ft_exit_fdf("Number arguments", NULL));
-	if (!av[1])
+	if (!av[1] || !av || av[1][0] == '\0')
 		return (ft_exit_fdf("File", NULL));
 	if ((ft_get_map_info(*fdf, av[1])) == -1)
 		return (-1);
