@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/06 20:27:01 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/06 22:59:18 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 # define FDF_H
 
-#include "mlx.h"
-#include <math.h>
-#include <limits.h>
-#include "libft.h"
-#include "ft_printf.h"
-#include "get_next_line.h"
+# include "mlx.h"
+# include <math.h>
+# include <limits.h>
+# include "libft.h"
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 # define BITS_PER_PIXEL 32
 # define SIZE_LINE 4
@@ -77,6 +77,7 @@ typedef struct		s_drawdatas
 	unsigned int	color;
 }					t_draw_datas;
 
+void				ft_coorddel(t_coord **coord);
 int					ft_fdf_init(t_fdf **fdf);
 void				ft_put_pxl_img(t_fdf *fdf, unsigned int color, int id);
 int					ft_exit_fdf(char *msg, ...);
@@ -91,7 +92,14 @@ int					ft_putlpoint(t_fdf *fdf, t_coord *start, t_coord *end);
 
 void				ft_iso_application(t_coord **coord);
 void				ft_ratio_application(t_coord **coord, t_datacoord *dc);
-void				ft_placement_application(t_coord *tmp, t_coord **coord, t_datacoord *dc);
+void				ft_placement_application(t_coord *tmp,
+		t_coord **coord, t_datacoord *dc);
+
+int					ft_get_min_max_y(t_datacoord *dc,
+		t_coord **coord, int *y_max);
+int					ft_get_min_max_x(t_coord **coord, int *x_max);
+int					ft_get_padd_z(t_coord **coord);
+int					ft_get_scale(int ratio_x, int ratio_y, int ratio_z);
 
 void				ft_putline(t_coord *line);
 void				ft_putcoord(t_coord **coord);

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 18:36:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/03 18:59:45 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/06 22:07:16 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			ft_fill_coord(t_datacoord *dc)
 	while (dc->map_info && dc->y < dc->nb_line)
 	{
 		dc->line_cpy = (char*)dc->map_info->content;
-		dc->i = 0;		
+		dc->i = 0;
 		if ((ft_fill_first(dc, dc->y)) == -1)
 			return (ft_exit_fdf("Coord init", NULL));
 		dc->coord_cpy[dc->y] = dc->cl_cpy;
@@ -41,7 +41,7 @@ int			ft_fill_coord(t_datacoord *dc)
 			{
 				if (!(dc->cl_cpy->next = ft_coord_new(dc->line_cpy + dc->i,
 								dc->pi, dc->x, dc->y)))
-					return (ft_exit_fdf("Coord init", NULL));	
+					return (ft_exit_fdf("Coord init", NULL));
 				dc->cl_cpy = dc->cl_cpy->next;
 				dc->x++;
 			}

@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 17:45:59 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/05 14:34:03 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/06 22:32:35 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int			ft_count_coord(t_coord *line)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (line)
 	{
 		line = line->next;
@@ -30,11 +32,11 @@ void		ft_putline(t_coord *line)
 	ft_putchar('|');
 	while (line)
 	{
-		ft_printf("{grey}%d{eoc}{cyan}%d{eoc}{red}%d{eoc} ", line->x, line->y, line->z);
+		ft_printf("{grey}%d{eoc}{cyan}%d{eoc}{red}%d{eoc} ",
+				line->x, line->y, line->z);
 		line = line->next;
 	}
 	ft_putchar('|');
-	ENDL
 }
 
 void		ft_putcoord(t_coord **coord)
