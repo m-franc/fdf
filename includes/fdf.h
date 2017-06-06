@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/06 12:28:57 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/06 16:34:45 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include "mlx.h"
 #include <math.h>
+#include <limits.h>
 #include "libft.h"
 #include "ft_printf.h"
 #include "get_next_line.h"
