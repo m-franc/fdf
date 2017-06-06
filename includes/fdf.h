@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:46:40 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/05 18:37:26 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/06 12:28:57 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # define BITS_PER_PIXEL 32
 # define SIZE_LINE 4
 # define ENDIAN 1
-# define LW 1500
-# define WW 1500
-# define LI 1500
-# define WI 1500
+# define LW 1200
+# define WW 1200
+# define LI 1200
+# define WI 1200
 # define HEXA "0123456789abcdefABCDEF"
 
 typedef struct		s_coord
@@ -73,10 +73,11 @@ typedef struct		s_drawdatas
 	int				distance_y;
 	int				x_inc;
 	int				y_inc;
+	unsigned int	color;
 }					t_draw_datas;
 
 int					ft_fdf_init(t_fdf **fdf);
-int					ft_put_pxl_img(t_fdf *fdf, unsigned int color, int id);
+void				ft_put_pxl_img(t_fdf *fdf, unsigned int color, int id);
 int					ft_exit_fdf(char *msg, ...);
 
 int					ft_get_map_info(t_fdf *fdf, char *map);
@@ -85,7 +86,11 @@ int					ft_fill_coord(t_datacoord *dc);
 t_coord				*ft_coord_new(char *abs, int *j, int x, int y);
 
 int					ft_putcoord_img(t_fdf *fdf, t_datacoord *dc);
-int					ft_putlpoint(t_fdf *fdf, int x_start, int y_start, int x_end, int y_end);
+int					ft_putlpoint(t_fdf *fdf, t_coord *start, t_coord *end);
+
+void				ft_iso_application(t_coord **coord);
+void				ft_ratio_application(t_coord **coord, t_datacoord *dc);
+void				ft_placement_application(t_coord **coord, t_datacoord *dc);
 
 void				ft_putline(t_coord *line);
 void				ft_putcoord(t_coord **coord);

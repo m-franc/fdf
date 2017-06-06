@@ -6,23 +6,16 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 21:07:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/02 18:06:52 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/06 12:33:08 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			ft_put_pxl_img(t_fdf *fdf, unsigned int color, int id)
+void		ft_put_pxl_img(t_fdf *fdf, unsigned int color, int id)
 {
-	int		shift;
-	int		d;
-
-	d = -1;
-	shift = 0;
-	while (++d < 4)
-	{
-		fdf->addr[id * 4 + d] = (color >> shift) & 0xFF;
-		shift += 8;
-	}
-	return (1);
+	fdf->addr[id * 4] = (color >> 0) & 0xFF;
+	fdf->addr[id * 4 + 1] = (color >> 8) & 0xFF;
+	fdf->addr[id * 4 + 2] = (color >> 16) & 0xFF;
+	fdf->addr[id * 4 + 3] = 0;
 }
