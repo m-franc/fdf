@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 12:08:46 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/06 22:30:16 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/07 12:42:19 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void			ft_ratio_application(t_coord **coord, t_datacoord *dc)
 
 	i = 0;
 	z = ft_get_padd_z(coord);
-	scale = ft_get_scale(LI / dc->x, WI / dc->y, WI / z);
+	if (z != 0)
+		scale = ft_get_scale(LI / dc->x, WI / dc->y, WI / z);
+	else
+		scale = ft_get_scale(LI / dc->x, WI / dc->y, WI);
 	while (coord[i])
 	{
 		tmp = coord[i];

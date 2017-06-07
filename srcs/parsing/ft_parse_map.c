@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 21:56:07 by mfranc            #+#    #+#             */
-/*   Updated: 2017/05/31 12:04:08 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/07 12:32:53 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,22 @@ int			ft_get_map_info(t_fdf *fdf, char *map)
 	char	*line;
 	t_list	*test;
 
-	fd = open(map, O_RDONLY);
+	if ((fd = open(map, O_RDONLY)) == -1)
+		return (ft_exit_fdf("File"));
 	if ((read = get_next_line(fd, &line)) == -1)
-		return (ft_exit_fdf("Reading", NULL));
+		return (ft_exit_fdf("Reading"));
 	if (!(fdf->map_info = ft_lstnew(line, (ft_strlen(line) + 1))))
-		return (ft_exit_fdf("Storage line", NULL));
+		return (ft_exit_fdf("Storage line"));
 	ft_strdel(&line);
 	test = fdf->map_info;
 	while ((read = get_next_line(fd, &line)) == 1)
 	{
 		if (!(test->next = ft_lstnew(line, (ft_strlen(line) + 1))))
-			return (ft_exit_fdf("Storage line", NULL));
+			return (ft_exit_fdf("Storage line"));
 		ft_strdel(&line);
 		test = test->next;
 	}
 	if (read == -1)
-		return (ft_exit_fdf("Reading", NULL));
+		return (ft_exit_fdf("Reading"));
 	return (1);
 }

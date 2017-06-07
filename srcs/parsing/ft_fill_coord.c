@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 18:36:34 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/06 22:07:16 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/07 12:17:50 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static int	ft_fill_first(t_datacoord *dc, int y)
 {
 	dc->x = 0;
+	if (!dc->line_cpy)
+		return (-1);
 	while (dc->line_cpy[*dc->pi] && (ft_isdigit(dc->line_cpy[*dc->pi]) == 0
 				&& dc->line_cpy[*dc->pi] != '-'))
 		*dc->pi += 1;

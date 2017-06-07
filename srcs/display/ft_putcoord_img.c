@@ -6,7 +6,7 @@
 /*   By: mfranc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:22:19 by mfranc            #+#    #+#             */
-/*   Updated: 2017/06/06 22:31:32 by mfranc           ###   ########.fr       */
+/*   Updated: 2017/06/07 12:36:07 by mfranc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ static t_coord		*ft_get_down_point(t_coord *act_point, int index)
 {
 	while (act_point && index-- > 0)
 		act_point = act_point->next;
+	if (!act_point)
+	{
+		ft_putendl("Coord Error");
+		exit(-1);
+	}
 	return (act_point);
 }
 
